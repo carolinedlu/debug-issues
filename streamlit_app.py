@@ -1,4 +1,3 @@
 import streamlit as st
 
-st.button("Button", key="x")
-st.checkbox("Checkbox", key="x")
+locale.setlocale(locale.LC_ALL, "en_US")
