@@ -1,10 +1,24 @@
-import pandas as pd
 import streamlit as st
-import numpy as np
-# "---"
-b = np.array([(1.2,1,2.2), (1.1,2,1.2)], dtype=float)
-df = pd.DataFrame(b)
-st.write(df)  # 👈 Draw the dataframe
+
+def calendarForm(mindate,maxdate):
+    with col2:
+        with st.form(key="metercalendar",clear_on_submit=True):
+            sd = st.date_input('Select a Start Date (Earliest date is shown)',value=mindate,min_value=mindate,max_value=maxdate,key='startDate')
+            ed = st.date_input('Select an End Date (Latest date is shown)',value=maxdate,min_value=mindate,max_value=maxdate,key='endDate')
+            submitBtn = st.form_submit_button('Get Hourly Consumption',on_click=getHourly,args=(sd,ed))
+
+def getHourly(sd,ed):
+    col3.write('---'+str(sd)+'----'+str(ed))
+
+
+
+# import pandas as pd
+# import streamlit as st
+# import numpy as np
+# # "---"
+# b = np.array([(1.2,1,2.2), (1.1,2,1.2)], dtype=float)
+# df = pd.DataFrame(b)
+# st.write(df)  # 👈 Draw the dataframe
 
 
 # import streamlit as st
