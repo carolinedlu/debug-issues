@@ -1,14 +1,32 @@
 import streamlit as st
+from stchess import DEFAULT_FEN
+from stchess import board
 
-def calendarForm(mindate,maxdate):
-    with col2:
-        with st.form(key="metercalendar",clear_on_submit=True):
-            sd = st.date_input('Select a Start Date (Earliest date is shown)',value=mindate,min_value=mindate,max_value=maxdate,key='startDate')
-            ed = st.date_input('Select an End Date (Latest date is shown)',value=maxdate,min_value=mindate,max_value=maxdate,key='endDate')
-            submitBtn = st.form_submit_button('Get Hourly Consumption',on_click=getHourly,args=(sd,ed))
+# Sidebar options
+st.sidebar.header("Chess on streamlit 🔥")
+color = st.sidebar.selectbox("Color",["white","black"])
+white_endpoint = st.sidebar.text_input("White API","")
+black_endpoint = st.sidebar.text_input("Black API","")
 
-def getHourly(sd,ed):
-    col3.write('---'+str(sd)+'----'+str(ed))
+white_endpoint = None if white_endpoint == "" else white_endpoint
+black_endpoint = None if black_endpoint == "" else black_endpoint
+
+values = board(color,white = white_endpoint,black = black_endpoint)
+st.write(values)
+
+
+
+# import streamlit as st
+
+# def calendarForm(mindate,maxdate):
+#     with col2:
+#         with st.form(key="metercalendar",clear_on_submit=True):
+#             sd = st.date_input('Select a Start Date (Earliest date is shown)',value=mindate,min_value=mindate,max_value=maxdate,key='startDate')
+#             ed = st.date_input('Select an End Date (Latest date is shown)',value=maxdate,min_value=mindate,max_value=maxdate,key='endDate')
+#             submitBtn = st.form_submit_button('Get Hourly Consumption',on_click=getHourly,args=(sd,ed))
+
+# def getHourly(sd,ed):
+#     col3.write('---'+str(sd)+'----'+str(ed))
 
 
 
